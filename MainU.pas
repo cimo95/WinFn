@@ -187,7 +187,7 @@ function GetPhysicalMonitorsFromHMONITOR(HMONITOR: HMONITOR;
 procedure Brightness(_a: Boolean);
 var
   a, b, c: DWORD;
-  d: hMonitor;
+  d: HMONITOR;
   e: LPPHYSICAL_MONITOR;
   f: Integer;
 begin
@@ -198,10 +198,15 @@ begin
     begin
       GetMonitorBrightness(e.hPhysicalMonitor, a, b, c);
       if _a then
+      begin
         if b <= c then
-          SetMonitorBrightness(e.hPhysicalMonitor, b + 10)
-        else if b >= 10 then
+          SetMonitorBrightness(e.hPhysicalMonitor, b + 10);
+      end
+      else
+      begin
+        if b >= 10 then
           SetMonitorBrightness(e.hPhysicalMonitor, b - 10);
+      end;
     end;
   end;
   GetMonitorBrightness(e.hPhysicalMonitor, a, b, c);
@@ -308,7 +313,7 @@ var
   tslKeyItemValue: TStringList;
 begin
   {if System Command is None or Application Path is blank, Status will be set to Disabled}
-  if ((cmbDftKey.itemindex = 0) and (cmbDftSysCmd.itemindex = 0)) or ((cmbDftKey.itemindex
+  if ((cmbCmd.itemindex = 0) and (cmbDftSysCmd.itemindex = 0)) or ((cmbCmd.itemindex
     = 1) and (eAppPath.text = '')) then
     rbStatusD.checked := True;
 
@@ -405,7 +410,7 @@ begin
         end;
       end;
     end    {If startup value for WinFn NOT exists then...}
-    else 
+    else
     {Ask user if they want to create it or not}
       if MessageBox(Handle,
       'If the startup is enabled, WinFn will run immediately after you logged on.'#13 +
@@ -483,6 +488,7 @@ end;
 
 procedure TFormMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
+  CanClose := False;
   FormMain.hide;
 end;
 
@@ -509,7 +515,7 @@ begin
     bStartup.Caption := 'DISABLE STARTUP'
   else
     bStartup.Caption := 'ENABLE STARTUP';
-    
+
   {Since we can't put #13 character directly, we initialize all Mode contents with it by this way}
   lvDftKey.items.BeginUpdate;
   for i := 0 to lvDftKey.items.count - 1 do
@@ -523,7 +529,7 @@ begin
   {Simulate doubleclick of one item on key list, so it can fill up the editor}
   lvDftKey.itemindex := 1;
   lvDftKeyDblClick(FormMain);
-    
+
   {Register all listed keys to system}
   for i := 0 to Length(hotkey) - 1 do
   begin
@@ -556,6 +562,9 @@ procedure TFormMain.lvDftKeyDblClick(Sender: TObject);
 var
   tslKeyItemValue: TStringList;
 begin
+  eapppath.clear;
+  eAppParam.Clear;
+
   {setting Key Name item index to equal with selected key list item index}
   cmbDftKey.itemindex := lvDftKey.itemindex;
 

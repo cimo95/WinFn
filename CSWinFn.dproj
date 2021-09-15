@@ -118,8 +118,10 @@
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppDPIAwarenessMode>PerMonitor</AppDPIAwarenessMode>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_Locale>1033</VerInfo_Locale>
+        <VerInfo_Locale>1057</VerInfo_Locale>
         <BT_BuildType>Debug</BT_BuildType>
+        <VerInfo_Keys>CompanyName=Cimosoft Codelicious, Org;FileVersion=1.0.0.0;InternalName=CSWINFN;LegalCopyright=Arachmadi Putra;LegalTrademarks=Arachmadi Putra;OriginalFilename=WinFn;ProductVersion=1.0.0.0;Comments=WinFn 1.0;ProgramID=cimosoft.ospro.cswinfn;FileDescription=WinFn 1.0;ProductName=cimosoft.ospro.cswinfn</VerInfo_Keys>
+        <Icon_MainIcon>CSWinFn_Icon.ico</Icon_MainIcon>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
@@ -165,20 +167,20 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">
+                <DeployFile LocalName="Win64\Debug\CSWinFn.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win64">
+                        <RemoteName>CSWinFn.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="Win32\Release\CSWinFn.exe" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>CSWinFn.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Win64\Release\CSWinFn.exe" Configuration="Release" Class="ProjectOutput">
-                    <Platform Name="Win64">
-                        <RemoteName>CSWinFn.exe</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
                 <DeployFile LocalName="Win32\Debug\HookDemo.exe" Configuration="Debug" Class="ProjectOutput"/>
-                <DeployFile LocalName="Win64\Debug\CSWinFn.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="Win64\Release\CSWinFn.exe" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="Win64">
                         <RemoteName>CSWinFn.exe</RemoteName>
                         <Overwrite>true</Overwrite>
