@@ -1,5 +1,6 @@
 unit MainU;
-
+
+
 interface
 
 uses
@@ -414,7 +415,7 @@ begin
     {Ask user if they want to create it or not}
       if MessageBox(Handle,
       'If the startup is enabled, WinFn will run immediately after you logged on.'#13 +
-      'Are you sure you want to enable startup? ', 'Disable Startup', 64 + 4) = mrYes then
+      'Are you sure you want to enable startup? ', 'Enable Startup', 64 + 4) = mrYes then
     begin
       {Create the startup value}
       if Reg.OpenKey('Software\Microsoft\Windows\CurrentVersion\Run', True) then
@@ -608,4 +609,4 @@ end;
 
 end.
 
-
+
